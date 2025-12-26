@@ -1,0 +1,69 @@
+
+
+project:
+  name: credit_card_fraud_detection
+
+paths:
+  root: "C:/first_data_science_proj/Credit_Card_Fraud_Detection"
+  data_raw: "C:/first_data_science_proj/Credit_Card_Fraud_Detection/data/raw"
+  models_dir: "C:/first_data_science_proj/Credit_Card_Fraud_Detection/models"
+  data_dir: 'data'
+
+data:
+  raw_file: "creditcard.csv"
+  target: "Class"
+
+preprocessing:
+  pca_cols:
+    - V1
+    - V2
+    - V3
+    - V4
+    - V5
+    - V6
+    - V7
+    - V8
+    - V9
+    - V10
+    - V11
+    - V12
+    - V13
+    - V14
+    - V15
+    - V16
+    - V17
+    - V18
+    - V19
+    - V20
+    - V21
+    - V22
+    - V23
+    - V24
+    - V25
+    - V26
+    - V27
+    - V28
+  raw_cols:
+    - Amount
+    - Time
+  pca_imputer_strategy: "median"
+  raw_imputer_strategy: "most_frequent"
+
+training:
+  test_size: 0.2
+  stratify: true
+  cv_splits: 5
+  use_smote: true
+  estimator: "xgboost"
+  xgboost_params:
+    n_estimators: 300
+    max_depth: 5
+    learning_rate: 0.1
+    subsample: 0.9
+    colsample_bytree: 0.9
+    scale_pos_weight: 10
+  random_forest_params:
+    random_state: 42
+
+serialization:
+  model_filename: "credit_trained_xgb_model.pkl"
